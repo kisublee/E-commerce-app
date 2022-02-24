@@ -6,13 +6,14 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import Show from "./pages/Show";
 import Create from "./pages/Create";
+import Detail from "./pages/Detail";
 
 // import React Hooks
 import { useState, useEffect } from "react";
 
 // import axios
 import axios from "axios";
-import Detail from "./pages/Detail";
+
 
 export default function App() {
   const [isSearched, setIsSearched] = useState(false);

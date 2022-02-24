@@ -1,14 +1,15 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@mui/styles";
-import { SlideData } from "./SlideData";
+
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 export default function ImageSlider({artist}) {
-  const [current, setCurrent] = React.useState(0);
-  const length = SlideData.length;
+    console.log(artist)
 
+  const [current, setCurrent] = React.useState(0);
+  const length = artist.service_images.length;
   const useStyle = makeStyles(() => ({
     card: {
       // backgroundColor,
@@ -65,7 +66,7 @@ export default function ImageSlider({artist}) {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
 
-  if (SlideData.length < 1) {
+  if (artist.service_images.length < 1) {
     return null;
   }
   console.log(current);
@@ -73,7 +74,7 @@ export default function ImageSlider({artist}) {
     return (
       <div className={index === current ? "slideActive" : "slide"} key={index}>
         {index === current && (
-          <img src={each.image} alt={each.title} className={classes.image} />
+          <img src={each} alt={each} className={classes.image} />
         )}
       </div>
     );
