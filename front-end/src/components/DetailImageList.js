@@ -8,20 +8,20 @@ import InfoIcon from '@mui/icons-material/Info';
 
 export default function DetailImageList({artist}) {
   console.log(artist)
-
+  const images = [artist.service_images]
+  console.log(images)
   return (
-
-    <ImageList sx={{ width: 1000, height: 400}}>
+    images &&  <ImageList sx={{ width: 1000, height: 400}}>
       <ImageListItem key="Subheader" cols={3}>
         <ListSubheader component="div">Sample Works</ListSubheader>
       </ImageListItem>
-      {artist.service_images.map((item, i) => {
+      {images[0].map((item, i) => {
         return (
          <ImageListItem key={i}>
           <img
             src={`${item}?w=248&fit=crop&auto=format`}
             srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
+            alt={item}
             loading="lazy"
             style={{width:300, height:250}}
           />
@@ -31,7 +31,7 @@ export default function DetailImageList({artist}) {
             actionIcon={
               <IconButton
                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
-                aria-label={`info about ${item.title}`}
+                aria-label={`info about ${item}`}
               >
                 <InfoIcon />
               </IconButton>
@@ -41,6 +41,6 @@ export default function DetailImageList({artist}) {
         )
 })}
     </ImageList>
-  );
+);
 }
 

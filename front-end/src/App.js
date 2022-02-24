@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 
 // import axios
 import axios from "axios";
+import Edit from "./pages/Edit";
 
 
 export default function App() {
@@ -61,6 +62,8 @@ export default function App() {
             <Route path="/post" element={<Create />} />
 
             <Route path="/artists/:id" element={<Detail />} />
+            <Route path="/artists/:id/edit" element={<Edit/>} />
+
           </Routes>
         </main>
       </React.Fragment>
