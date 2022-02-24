@@ -33,8 +33,17 @@ export default function ArtistDetail() {
     <>
       <Grid sx={{ display: "flex", justifyContent: "center" }}>
        {/* <DetailImageList artist={artist} /> */}
+      
       </Grid>
+      <Typography variant="h5">Artist: {artist.name}</Typography>
+       <Typography variant="h5">{artist.description}</Typography>
+       <Typography variant="h5">My price is {artist.price}</Typography>
+       <Typography variant="h5">My services: {artist.services}</Typography>
+       <Typography variant="h5">Current Location: {artist.current_location}</Typography>
 
+
+      <Typography variant="h5">Rating: {artist.rating}</Typography>
+      <Typography variant="h5">Featured: {artist.featured? "Featured here before" : "New here"}</Typography>
       <CardActions>
         <Button variant="contained" size="small" onClick={handleDelete}>
           Delete

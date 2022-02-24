@@ -88,7 +88,7 @@ export default function NewPost() {
         </Typography>
         </Grid> */}
         <Grid item xs={12} lg={12}sx={{display:"flex", justifyContent:"center"}} >
-          <FormControl required>
+          <FormControl required >
             <Card sx={{ width: "100%", height: "auto" }}>
               <CardContent>
                 <Grid container sx={{ mb: 1 }}>
