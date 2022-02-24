@@ -32,7 +32,7 @@ export default function ArtistDetail() {
   return (
     <>
       <Grid sx={{ display: "flex", justifyContent: "center" }}>
-        <DetailImageList artist={artist} />
+       {/* <DetailImageList artist={artist} /> */}
       </Grid>
 
       <CardActions>

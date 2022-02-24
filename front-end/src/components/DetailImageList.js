@@ -11,11 +11,11 @@ export default function DetailImageList({artist}) {
   const images = [artist.service_images]
   console.log(images)
   return (
-    images &&  <ImageList sx={{ width: 1000, height: 400}}>
+    images.length > 0 &&  <ImageList sx={{ width: 1000, height: 400}}>
       <ImageListItem key="Subheader" cols={3}>
         <ListSubheader component="div">Sample Works</ListSubheader>
       </ImageListItem>
-      {images[0].map((item, i) => {
+      {images.length > 0 && images[0].map((item, i) => {
         return (
          <ImageListItem key={i}>
           <img
