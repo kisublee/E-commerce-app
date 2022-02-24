@@ -1,7 +1,7 @@
 import Artists from "../components/Artists"
 
-export default function Show ({artists, search}) {
+export default function Show ({ search}) {
 console.log(search)
 
-    return (<Artists artists={artists} />)
+    return (<Artists />)
 }

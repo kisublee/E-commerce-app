@@ -34,7 +34,7 @@ export default function App() {
       setArtists(res.data.payload);
     };
     fetchData();
-  }, []);
+  }, [search]);
 
   console.log(artists);
   console.log(search);

@@ -10,13 +10,18 @@ export default function ArtistDetail() {
   const API = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [artist, setArtist] = useState([]);
+  const [image, setImage] = useState([]);
+
   const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
+      try{
       console.log("Hitting detail page");
       const res = await axios.get(`${API}/artists/${id}`);
       setArtist(res.data.payload);
+      setImage(res.data.payload.service_images)
+      } catch(err) {return err}
     };
     fetchData();
   },[]);
@@ -28,12 +33,17 @@ export default function ArtistDetail() {
       .catch((error) => console.warn(error));
   };
 
-  console.log(artist);
+
+  console.log(image)
+  console.log(artist)
+  // const display = image.map((each) => <img src={each} />)
+  // console.log(service_images);
   return (
-    <>
+    <div>
       <Grid sx={{ display: "flex", justifyContent: "center" }}>
-       {/* <DetailImageList artist={artist} /> */}
-      
+       <DetailImageList image={image} artist={artist}/>
+      {/* {display} */}
+
       </Grid>
       <Typography variant="h5">Artist: {artist.name}</Typography>
        <Typography variant="h5">{artist.description}</Typography>
@@ -60,6 +70,6 @@ export default function ArtistDetail() {
         <Link to={`/artists/${id}/book`} style={{color:"white", textDecoration:"none"}}> Book </Link>
         </Button>
       </CardActions>
-    </>
+    </div>
   );
 }

@@ -6,23 +6,23 @@ import ListSubheader from '@mui/material/ListSubheader';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/Info';
 
-export default function DetailImageList({artist}) {
-  console.log(artist)
-  const images = [artist.service_images]
-  console.log(images)
+export default function DetailImageList({image, artist}) {
+  console.log(image)
+ 
+
   return (
-    images.length > 0 &&  <ImageList sx={{ width: 1000, height: 400}}>
+    <ImageList sx={{ width: 1000, height: 400}}>
       <ImageListItem key="Subheader" cols={3}>
         <ListSubheader component="div">Sample Works</ListSubheader>
       </ImageListItem>
-      {images.length > 0 && images[0].map((item, i) => {
+      {image.map((item, i) => {
         return (
          <ImageListItem key={i}>
           <img
             src={`${item}?w=248&fit=crop&auto=format`}
             srcSet={`${item}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item}
-            loading="lazy"
+            // loading="lazy"
             style={{width:300, height:250}}
           />
           <ImageListItemBar

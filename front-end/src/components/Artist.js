@@ -71,7 +71,7 @@ export default function Artist({ post }) {
               Specialty: {post.art_type}
             </Typography>
             <Typography gutterBottom variant="h7" fontSize={16} component="div">
-              Price: ${post.price} per hour
+              Price: $ {post.price} per hour
             </Typography>
             <Typography
               variant="body2"
