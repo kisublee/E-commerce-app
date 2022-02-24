@@ -7,36 +7,14 @@ import backgroundImg from "../assets/bg_image.jpg";
 import mobileBackgroundImg from "../assets/mobile_img.jpeg";
 import SearchBar from "../components/SearchBar";
 
-// import React Hooks
-import { useState, useEffect } from "react";
-
-// import axios
-import axios from "axios";
-
-export default function Home() {
+export default function Home({artists, search, isSearched, setSearch}) {
   const theme = useTheme();
   //Media Query for mobile view
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-const [isSearched, setIsSearched] =useState(false)
-const [artists, setArtists] = useState([])
-
-const API = process.env.REACT_APP_API_URL;
-
-useEffect(() => {
-    const fetchData = async () => {
-        console.log("Fetching API for artists")
-        const res = await axios.get(`${API}/artists`)
-        setArtists(res.data.payload)
-    }
-    fetchData()
-}, []);
-
-console.log(artists)
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container >
+      <Grid container>
         <Grid
           item
           xs={12}
@@ -51,7 +29,7 @@ console.log(artists)
             mt: 13,
           }}
         >
-          <SearchBar isSearched={isSearched}/>
+          <SearchBar isSearched={isSearched} setSearch={setSearch} />
         </Grid>
 
         <Grid
@@ -83,7 +61,7 @@ console.log(artists)
             />
           )}
         </Grid>
-            
+
       </Grid>
     </Box>
   );

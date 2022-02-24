@@ -1,4 +1,7 @@
-export default function Show () {
+import Artists from "../components/Artists"
 
-    return "Show"
+export default function Show ({artists, search}) {
+console.log(search)
+
+    return (<Artists artists={artists} />)
 }
