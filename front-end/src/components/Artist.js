@@ -21,12 +21,12 @@ export default function Artist({ post }) {
           mt: 5,
 
           maxWidth: 600,
-          maxHeight: 680,
+          minHeight: 650,
           boxShadow: 3,
         }}
       >
         <CardActionArea>
-          <Link to={`detail/${post.id}`}>
+          <Link to={`/artists/${post.id}`}>
             {post.service_images ? (
               <CardMedia
                 component="img"
@@ -64,9 +64,18 @@ export default function Artist({ post }) {
               variant="h7"
               fontSize={16}
               component="div"
-              sx={{ height: 30 }}
+              sx={{ height: 20 }}
             >
               Specialty: {post.art_type}
+            </Typography>
+            <Typography
+              gutterBottom
+              variant="h7"
+              fontSize={16}
+              component="div"
+           
+            >
+              Price: ${post.price} per hour
             </Typography>
             <Typography
               variant="body2"
@@ -74,6 +83,13 @@ export default function Artist({ post }) {
               sx={{ maxHeight: 200, overflow: "scroll" }}
             >
               Services: {post.services}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ maxHeight: 200, mt:1, mb:1, overflow: "scroll" }}
+            >
+              {post.description}
             </Typography>
             <Typography
               variant="body2"
