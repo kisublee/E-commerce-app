@@ -19,7 +19,7 @@ export default function ArtistDetail() {
       setArtist(res.data.payload);
     };
     fetchData();
-  }, []);
+  },[]);
 
   const handleDelete = () => {
     axios
@@ -46,6 +46,9 @@ export default function ArtistDetail() {
 
         <Button variant="contained"  size="small" >
         <Link to={`/artists/${id}/edit`} style={{color:"white", textDecoration:"none"}}> Edit </Link>
+        </Button>
+        <Button variant="contained"  size="small" >
+        <Link to={`/artists/${id}/book`} style={{color:"white", textDecoration:"none"}}> Book </Link>
         </Button>
       </CardActions>
     </>

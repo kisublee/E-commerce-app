@@ -59,7 +59,7 @@ export default function NewPost() {
     axios
       .post(`${API}/artists`, artist)
       .then(() => {
-        navigate("/");
+        navigate("/artists");
       })
       .catch((err) => console.warn(err));
   };

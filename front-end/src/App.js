@@ -7,13 +7,15 @@ import Home from "./pages/Home";
 import Show from "./pages/Show";
 import Create from "./pages/Create";
 import Detail from "./pages/Detail";
+import Edit from "./pages/Edit";
+import Book from "./pages/Book";
+
 
 // import React Hooks
 import { useState, useEffect } from "react";
 
 // import axios
 import axios from "axios";
-import Edit from "./pages/Edit";
 
 
 export default function App() {
@@ -63,6 +65,7 @@ export default function App() {
 
             <Route path="/artists/:id" element={<Detail />} />
             <Route path="/artists/:id/edit" element={<Edit/>} />
+            <Route path="/artists/:id/book" element={<Book/>} />
 
           </Routes>
         </main>
