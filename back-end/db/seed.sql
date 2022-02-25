@@ -24,7 +24,7 @@ INSERT INTO cars(name, maker, vin, mpg_cty, mpg_hwy, engine, body_style, drive_t
 
 INSERT INTO artists (name, art_type, price, rating, current_location, can_travel, services, service_images, description, featured) VALUES 
 (
-    'Katie', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event fashion illustrations', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png','https://images.squarespace-cdn.com/content/v1/515c5625e4b0bca14d74713f/1440973785550-F29NPS8C43WJMXGMDE37/Elizabeth'], 'I am a fashion illustrator based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
+    'Katie', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event fashion illustrations', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png','https://images.squarespace-cdn.com/content/v1/515c5625e4b0bca14d74713f/1440973785550-F29NPS8C43WJMXGMDE37/Elizabeth','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqialWpQUpoGLy9PXlkqftdMM_ahgEHdf1EA&usqp=CAU','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlp02fT7TF82AZteGv-QyJwqDt76btOqnNCg&usqp=CAU','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzuMSAPLWsrvUgpk6KfykYZAZgNUWk4Nld8A&usqp=CAU'], 'I am a fashion illustrator based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
 ),
 
 (

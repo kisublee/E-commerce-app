@@ -1,10 +1,14 @@
 // Dependencies
 const express = require("express");
+const fileUpload = require("express-fileupload")
 const { as } = require("pg-promise");
+// CONFIGURATION
+require("dotenv").config();
 
 // Middleware 
 const artistRoute = express.Router();
 
+artistRoute.use(fileUpload())
 // Queries
 const { getAllArtists,
     sortArtists,
@@ -12,7 +16,8 @@ const { getAllArtists,
     createArtist,
     deleteArtist,
     updateArtist,
-    searchArtists } = require("../queries/artists")
+    searchArtists,
+    insertImage} = require("../queries/artists")
 
 // Get all artists
 artistRoute.get("/", async (req, res) => {
@@ -77,6 +82,29 @@ artistRoute.post("/", async (req, res) => {
         success: true,
         payload: newArtist,
     })
+})
+
+artistRoute.post('/', async (req, res) => {
+  const artist  = req.body;
+  const insertedImage = await insertImage(artist)
+  res.status(200).json({
+    success: true,
+    payload: insertedImage,
+})
+  // if (req.files === null) {
+  //   return res.status(400).json({error:"No File Uploaded"})
+  // }
+  // const file = req.files.file
+  // console.log(req.files)
+
+  // file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
+  //   if (err) {
+  //     return res.status(500).send(err)
+  //   }
+  // })
+
+  // res.json({fileName: file.name, filePath: `/upload/${file.name}`})
+
 })
 
 // Delete an existing artist post

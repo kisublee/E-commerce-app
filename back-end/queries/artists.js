@@ -27,7 +27,7 @@ const sortArtists = async () => {
 const searchArtists = async (search) => {
 
     try{
-
+    
       const searchedArtists = await db.any('SELECT * FROM artists WHERE art_type=$1', search)
       return searchedArtists
     }catch (err) {
@@ -58,6 +58,20 @@ const createArtist = async (artist) => {
     return err
   }
 }
+
+const insertImage = async (artist) => {
+  const {service_images} = artist
+
+  try {
+      const insertedImage = await db.one("INSERT INTO artists (service_images) VALUES ($1) RETURNING *", service_images)
+
+      return insertedImage
+
+  } catch(err) {
+    return err
+  }
+}
+
 
 // Delete an existing artist post 
 const deleteArtist = async (id) => {
@@ -97,5 +111,6 @@ module.exports = {
   createArtist,
   deleteArtist,
   updateArtist,
-  searchArtists 
+  searchArtists,
+  insertImage
 };
