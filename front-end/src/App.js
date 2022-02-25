@@ -29,7 +29,7 @@ export default function App() {
     const fetchData = async () => {
       console.log("Fetching API for artists");
       const res = await axios.get(
-        !search ? `${API}/artists` : `${API}/artists`
+        !search==="" ? `${API}/artists` : `${API}/artists/?type=${search}`
       );
       setArtists(res.data.payload);
     };

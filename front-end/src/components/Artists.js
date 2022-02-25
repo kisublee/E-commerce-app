@@ -9,23 +9,23 @@ import { useState, useEffect } from "react";
 // import axios
 import axios from "axios";
 
-export default function Artists() {
+export default function Artists({artists}) {
 
-  const [artists, setArtists] = useState([]);
-  const [search, setSearch] = useState("");
+  // const [artists, setArtists] = useState([]);
+  // const [search, setSearch] = useState("");
 
-  const API = process.env.REACT_APP_API_URL;
+  // const API = process.env.REACT_APP_API_URL;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log("Fetching API for artists");
-      const res = await axios.get(
-        !search ? `${API}/artists` : `${API}/artists`
-      );
-      setArtists(res.data.payload);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     console.log("Fetching API for artists");
+  //     const res = await axios.get(
+  //       !search ? `${API}/artists` : `${API}/artists`
+  //     );
+  //     setArtists(res.data.payload);
+  //   };
+  //   fetchData();
+  // }, []);
 
 
   const [sort, setSort] = useState({
@@ -33,7 +33,7 @@ export default function Artists() {
   })
 
   const displayArtists = (sort) => {
-    console.log(sort)
+
     const copyArray = artists.slice()
     if (sort === "high") {
      return copyArray.sort((a,b) => b.price - a.price).map((post, i) =>(

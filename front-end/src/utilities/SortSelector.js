@@ -10,7 +10,7 @@ export default function SortSelector({ sort, setSort }) {
     setSort(event.target.value);
   };
 
-  console.log(sort);
+
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
