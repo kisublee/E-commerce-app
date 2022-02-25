@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import DeleteDialog from "../utilities/DialogForDelete";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -26,7 +27,7 @@ export default function ArtistDetail({open, setOpen}) {
   const navigate = useNavigate();
   const [artist, setArtist] = useState([]);
   const [image, setImage] = useState([]);
-
+  const [openForDelete, setOpenForDelete] = useState(false)
   const { id } = useParams();
 
   useEffect(() => {
@@ -49,6 +50,10 @@ export default function ArtistDetail({open, setOpen}) {
     }
 
     setOpen(false);
+  };
+
+  const handleClickOpenToggler = () => {
+    setOpenForDelete(!openForDelete);
   };
 
   const handleDelete = () => {
@@ -107,10 +112,11 @@ export default function ArtistDetail({open, setOpen}) {
         <DetailImageList image={image} artist={artist}/>
       </Grid>
       <CardActions>
-        <Button variant="contained" size="small" onClick={handleDelete}>
+        <Button variant="contained" size="small" onClick={handleClickOpenToggler}>
           Delete
+          <DeleteDialog openForDelete={openForDelete} handleDelete={handleDelete}/>
         </Button>
-
+        
         <Button variant="contained" size="small">
           <Link
             to="/artists"
