@@ -18,11 +18,17 @@ import FormControl from "@mui/material/FormControl";
 import postBackground from "../assets/newPost.JPG";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import Stack from "@mui/material/Stack";
+
+const Input = styled("input")({
+  display: "none",
+});
 
 export default function NewPost() {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
-
   const [artist, setArtist] = useState({
     name: "",
     art_type: "",
@@ -30,13 +36,18 @@ export default function NewPost() {
     current_location: "",
     can_travel: false,
     services: "",
-    service_images: [],
     description: "",
   });
 
+  const [imageName, setImageName] =useState("Choose your file")
+  const [image, setImage] = useState({
+    service_images:[]
+  })
+const [uploadedFile, setUploadedFile] = useState({})
+
   const handleCheckBox = (event) => {
-      setArtist({...artist, can_travel: !artist.can_travel})
-  }
+    setArtist({ ...artist, can_travel: !artist.can_travel });
+  };
 
   const handleChange = (event) => {
     console.log(event.target.id, event.target.value);
@@ -62,12 +73,26 @@ export default function NewPost() {
         navigate("/artists");
       })
       .catch((err) => console.warn(err));
+
   };
+
+
 
   const clickHandler = () => {
     navigate("/");
   };
 
+  const uploadImage = (event) => {
+    setImage(event.target.files[0])
+    setImageName(event.target.files[0].name)
+  }
+ 
+  const handleImageSubmit = async (e) => {
+    e.preventDefault()
+   axios.post(`${API}/artists`, image)
+  }
+
+  console.log(image)
   return (
     <Container>
       <Box sx={{ fontWeight: "bold" }}>
@@ -75,125 +100,141 @@ export default function NewPost() {
           What is your magic?
         </Typography>
       </Box>
-        {/* <Grid container > */}
-        {/* <Grid item xs={0} lg={3}>
-          <CardMedia
-            component="img"
-            alt="video"
-            height="auto"
-            image={postBackground}
-          />
-            <Typography variant="h5" sx={{ mt: 2, textAlign: "center" }}>
-         For service
-        </Typography>
-        </Grid> */}
-        <Grid item xs={12} lg={12}sx={{display:"flex", justifyContent:"center"}} >
-          <FormControl required >
-            <Card sx={{ width: "100%", height: "auto" }}>
-              <CardContent>
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {/* {textFormatter(artist)} */}
-                    Artist Name:
-                  </Typography>
+      <Grid
+        item
+        xs={12}
+        lg={12}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
+        <FormControl required>
+          <Card sx={{ width: "100%", height: "auto" }}>
+            <CardContent>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  {/* {textFormatter(artist)} */}
+                  Artist Name:
+                </Typography>
 
-                  <TextField
-                    id="name"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={artist.name}
-                    sx={{ ml: 2.8 }}
-                  />
-                </Grid>
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Type of Art:
-                  </Typography>
-                  <TextField
-                    id="art_type"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={artist.art_type}
-                    sx={{ ml: 3.8 }}
-                  />
-                </Grid>
+                <TextField
+                  id="name"
+                  variant="standard"
+                  onChange={handleChange}
+                  value={artist.name}
+                  sx={{ ml: 2.8 }}
+                />
+              </Grid>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Type of Art:
+                </Typography>
+                <TextField
+                  id="art_type"
+                  variant="standard"
+                  onChange={handleChange}
+                  value={artist.art_type}
+                  sx={{ ml: 3.8 }}
+                />
+              </Grid>
 
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Price:
-                  </Typography>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Price:
+                </Typography>
 
-                  <TextField
-                    id="price"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={artist.price}
-                    sx={{ ml: 2.2 }}
-                  />
-                </Grid>
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Current Location:
-                  </Typography>
-                  <TextField
-                    id="current_location"
-                    variant="standard"
-                    onChange={handleChange}
-                    value={artist.current_location}
-                    sx={{ ml: 4.1 }}
-                  />
-                </Grid>
-                <Grid container>
-                  <Typography variant="h5" sx={{ overflow: "auto" }}>
-                    Can Travel?
-                  </Typography>
-                  <Checkbox
-                    id="can_travel"
-                    icon={<CheckBoxOutlineBlankIcon />}
-                    checkedIcon={<CheckBoxIcon />}
-                    onClick={ handleCheckBox }
-                  />
-                </Grid>
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Service(s):
-                  </Typography>
-                  <TextField
-                    multiline
-                    maxRows={4}
-                    id="services"
-                    onChange={handleChange}
-                    value={artist.services}
-                    sx={{ ml: 4.1 }}
-                  />
-                </Grid>
-                <Grid container sx={{ mb: 1 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    Description:
-                  </Typography>
-                  <TextField
-                    multiline
-                    maxRows={6}
-                    id="description"
-                    onChange={handleChange}
-                    value={artist.description}
-                    sx={{ ml: 4.1 }}
-                  />
-                </Grid>
-              </CardContent>
-              <CardActions>
-                <Button size="small" onClick={handleSubmit}>
-                  Submit
-                </Button>
+                <TextField
+                  id="price"
+                  variant="standard"
+                  onChange={handleChange}
+                  value={artist.price}
+                  sx={{ ml: 2.2 }}
+                />
+              </Grid>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Current Location:
+                </Typography>
+                <TextField
+                  id="current_location"
+                  variant="standard"
+                  onChange={handleChange}
+                  value={artist.current_location}
+                  sx={{ ml: 4.1 }}
+                />
+              </Grid>
+              <Grid container>
+                <Typography variant="h5" sx={{ overflow: "auto" }}>
+                  Can Travel?
+                </Typography>
+                <Checkbox
+                  id="can_travel"
+                  icon={<CheckBoxOutlineBlankIcon />}
+                  checkedIcon={<CheckBoxIcon />}
+                  onClick={handleCheckBox}
+                />
+              </Grid>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Service(s):
+                </Typography>
+                <TextField
+                  multiline
+                  maxRows={4}
+                  id="services"
+                  onChange={handleChange}
+                  value={artist.services}
+                  sx={{ ml: 4.1 }}
+                />
+              </Grid>
+              <Grid container sx={{ mb: 1 }}>
+                <Typography gutterBottom variant="h5" component="div">
+                  Description:
+                </Typography>
+                <TextField
+                  multiline
+                  maxRows={6}
+                  id="description"
+                  onChange={handleChange}
+                  value={artist.description}
+                  sx={{ ml: 2.6 }}
+                />
+              </Grid>
+              <Grid container sx={{ mb: 1 }}>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <label htmlFor="service_images">
+                    <Input
+                      accept="image/*"
+                      id="service_images"
+                      multiple
+                      type="file"
+                      onChange={uploadImage}
+                      value={artist.service_images}
+                    />
+                    <Button variant="contained" component="span">
+                      Browse
+                    </Button>
+                    <Button variant="contained" component="span" onClick={handleImageSubmit}>
+                      Upload Image
+                    </Button>
+                    <Typography gutterBottom variant="h6" component="div" sx={{mt:1}}>
+                    {imageName}
+                    </Typography>
+                  </label>
+                </Stack>
+              </Grid>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={handleSubmit}>
+                Submit
+              </Button>
 
-                <Button size="small" onClick={clickHandler}>
-                  Back to Home
-                </Button>
-              </CardActions>
-            </Card>
-          </FormControl>
-        </Grid>
-        {/* </Grid> */}
+              <Button size="small" onClick={clickHandler}>
+                Back to Home
+              </Button>
+            </CardActions>
+          </Card>
+        </FormControl>
+      </Grid>
+      {/* </Grid> */}
     </Container>
   );
 }

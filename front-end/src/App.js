@@ -42,7 +42,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <React.Fragment>
-        <CssBaseline />
+        <CssBaseline/>
         <NavBar />
         <main>
           <Routes>
