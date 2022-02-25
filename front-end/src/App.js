@@ -22,6 +22,7 @@ export default function App() {
   const [isSearched, setIsSearched] = useState(false);
   const [artists, setArtists] = useState([]);
   const [search, setSearch] = useState("");
+  const [open, setOpen] = useState(false);
 
   const API = process.env.REACT_APP_API_URL;
 
@@ -63,8 +64,8 @@ export default function App() {
             />
             <Route path="/post" element={<Create />} />
 
-            <Route path="/artists/:id" element={<Detail />} />
-            <Route path="/artists/:id/edit" element={<Edit/>} />
+            <Route path="/artists/:id" element={<Detail open={open} setOpen={setOpen} />} />
+            <Route path="/artists/:id/edit" element={<Edit setOpen={setOpen}  />} />
             <Route path="/artists/:id/book" element={<Book/>} />
 
           </Routes>

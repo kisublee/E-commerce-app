@@ -3,6 +3,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import StarIcon from '@mui/icons-material/Star';
 import DetailImageList from "./DetailImageList";
+import * as React from "react";
+
 import {
   Grid,
   Typography,
@@ -12,9 +14,14 @@ import {
   Container,
   Divider
 } from "@mui/material";
-import Star from "@mui/icons-material/Star";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-export default function ArtistDetail() {
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+export default function ArtistDetail({open, setOpen}) {
   const API = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [artist, setArtist] = useState([]);
@@ -35,6 +42,14 @@ export default function ArtistDetail() {
     };
     fetchData();
   }, []);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleDelete = () => {
     axios
@@ -125,6 +140,12 @@ export default function ArtistDetail() {
           </Link>
         </Button>
       </CardActions>
+
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          This post has been successfully updated!
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

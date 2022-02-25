@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Checkbox from "@mui/material/Checkbox";
 import { Container, TextField } from "@mui/material";
@@ -11,15 +9,21 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
-import postBackground from "../assets/newPost.JPG";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
-export default function EditForm() {
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
+export default function EditForm({setOpen}) {
   const navigate = useNavigate();
   const API = process.env.REACT_APP_API_URL;
   const { id } = useParams();
@@ -70,9 +74,11 @@ export default function EditForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("submitting");
+    setOpen(true);
     axios
       .put(`${API}/artists/${id}`, artist)
       .then(() => navigate(`/artists/${id}`));
+
   };
 
   const clickHandler = () => {
@@ -185,7 +191,6 @@ export default function EditForm() {
                 <Button size="small" onClick={handleSubmit}>
                   Submit
                 </Button>
-
                 <Button size="small" onClick={clickHandler}>
                   Back to the post
                 </Button>
