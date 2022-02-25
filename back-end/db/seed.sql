@@ -24,18 +24,18 @@ INSERT INTO cars(name, maker, vin, mpg_cty, mpg_hwy, engine, body_style, drive_t
 
 INSERT INTO artists (name, art_type, price, rating, current_location, can_travel, services, service_images, description, featured) VALUES 
 (
-    'Katie', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event fashion illustrations', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png'], 'I am a fashion illustrator based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
+    'Katie', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event fashion illustrations', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png','https://images.squarespace-cdn.com/content/v1/515c5625e4b0bca14d74713f/1440973785550-F29NPS8C43WJMXGMDE37/Elizabeth'], 'I am a fashion illustrator based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
 ),
 
 (
-    'Ki Sub', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event painting', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png'], 'I am a painter based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
+    'Ki Sub', 'painting', 250, 5, 'NYC', TRUE, 'I offer live event painting', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://images.squarespace-cdn.com/content/v1/515c5625e4b0bca14d74713f/1440973785550-F29NPS8C43WJMXGMDE37/Elizabeth'], 'I am a painter based in NYC. I have worked for high end brands like Chanel, Prada and I can travel', TRUE
 ),
 (
-    'Colin', 'Balloon', 300, 5, 'Seatle', TRUE, 'I do Balloon art', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png'], 'I am an Balloon art artist based in Seatle. I can travel.', TRUE
+    'Colin', 'balloon', 300, 5, 'Seatle', TRUE, 'I do Balloon art', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://twistedsifter.com/wp-content/uploads/2014/08/balloon-art-by-jason-secoda-airheads-entertainment-cover.jpg'], 'I am an Balloon art artist based in Seatle. I can travel.', TRUE
 ),
 (
-    'Eva', 'Photography', 150, 4, 'Sanfrancisco', TRUE, 'I am specialized in archtecure art and portraits.', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png'], 'I have 10 years experience. I can travel.', FALSE
+    'Eva', 'photography', 150, 4, 'Sanfrancisco', TRUE, 'I am specialized in archtecure photography and minimalistic portraits', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://static.dezeen.com/uploads/2015/02/Istanbul-Turkey-photographs-Yener-Torun_dezeen_784_21.jpg'], 'I have 10 years experience. I can travel and I speak spanish', FALSE
 ),
 (
-    'Yaya', 'Photography', 150, 3, 'Sanfrancisco', TRUE, 'I am specialized in archtecure art and portraits.', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://hips.hearstapps.com/hbz.h-cdn.co/assets/15/38/1442250480-lenaker.png'], 'I have 10 years experience. I can travel.', FALSE
-)
+    'Yaya', 'photography', 150, 3, 'Sanfrancisco', TRUE, 'I do a lot of wedding and party portraits.', ARRAY['https://i.pinimg.com/originals/56/59/61/56596165371d1316edec38f397dca766.jpg','https://i.pinimg.com/564x/56/94/e6/5694e67caff4767d9b3573cffee5e808.jpg'], 'I can only travel within Tribeca. My service includes a photo book. You will receive your photos digitally and physically!', FALSE
+);

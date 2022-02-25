@@ -19,5 +19,10 @@ app.get("/", (req, res) => {
 app.use("/cars", carsRoute)
 app.use("/artists", artistsRoute )
 
+app.get("*", (req, res) => {
+  console.log("Error Found");
+  res.status(404).json({ error: "Page not found" });
+});
+
 // EXPORT
 module.exports = app;

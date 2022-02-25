@@ -7,15 +7,27 @@ const artistRoute = express.Router();
 
 // Queries
 const { getAllArtists,
+    sortArtists,
     getOneArtist,
     createArtist,
     deleteArtist,
-    updateArtist} = require("../queries/artists")
+    updateArtist,
+    searchArtists } = require("../queries/artists")
 
-// Get all cars
-artistRoute.get("/", async (_, res) => {
+// Get all artists
+artistRoute.get("/", async (req, res) => {
 
 const allArtists = await getAllArtists();
+
+const {type} = req.query
+
+if (type === "painting" || type === "photography" || type === "balloon") {
+  const searchedArtists = await searchArtists(type)
+  return res.json({
+    success:true,
+    payload: searchedArtists
+  })
+} 
 
 allArtists.length !== 0 ? res.status(200).json({
     success:true,
@@ -24,8 +36,21 @@ allArtists.length !== 0 ? res.status(200).json({
 
 })
 
+// Sort artists
+// I used req.query before. I think it is better to go with it. change this later
+artistRoute.get("/desc", async (_, res) => {
+  const sortedArtists = await sortArtists()
 
-// Get a specific car by id
+  sortedArtists.length !== 0 ? res.status(200).json({
+    success:true,
+    payload: sortedArtists
+}) : res.status(404).json({error: "Database you are trying to access is empty"})
+})
+
+
+
+
+// Get a specific artists by id
 artistRoute.get("/:id", async (req, res) => {
     const { id } = req.params;
     const artist = await getOneArtist(id);
@@ -43,7 +68,7 @@ artistRoute.get("/:id", async (req, res) => {
     }
   });
 
-// Create a new car post  
+// Create a new artist post  
 artistRoute.post("/", async (req, res) => {
     const artist = req.body;
     const newArtist = await createArtist(artist)
@@ -54,7 +79,7 @@ artistRoute.post("/", async (req, res) => {
     })
 })
 
-// Delete an existing car post
+// Delete an existing artist post
 artistRoute.delete("/:id", async (req, res) => {
   const {id} = req.params;
 
@@ -67,7 +92,7 @@ artistRoute.delete("/:id", async (req, res) => {
 
 })
 
-// Update an existing car post 
+// Update an existing artist post 
 artistRoute.put("/:id", async (req, res) => {
   const {id} = req.params;
   const artist = req.body;

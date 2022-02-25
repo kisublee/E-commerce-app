@@ -13,6 +13,27 @@ const getAllArtists = async () => {
   }
 };
 
+const sortArtists = async () => {
+  try{
+
+    const sortedArtists = await db.any("SELECT * FROM artists ORDER BY price DESC")
+    return sortedArtists
+  } catch (err) {
+    return err
+  }
+}
+// Get artists based on keyword
+
+const searchArtists = async (search) => {
+
+    try{
+
+      const searchedArtists = await db.any('SELECT * FROM artists WHERE art_type=$1', search)
+      return searchedArtists
+    }catch (err) {
+      return err
+    }
+}
 
 // Get id
 const getOneArtist = async (id) => {
@@ -71,8 +92,10 @@ const updateArtist = async (id, artist) => {
 
 module.exports = {
   getAllArtists,
+  sortArtists,
   getOneArtist,
   createArtist,
   deleteArtist,
-  updateArtist
+  updateArtist,
+  searchArtists 
 };
