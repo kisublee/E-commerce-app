@@ -77,6 +77,7 @@ const navigate = useNavigate()
         variant="h5"
         component="div"
         gutterBottom
+        align="center"
         sx={{ color: "white", mb: 3, fontFamily: "kanit", ml: 3 }}
       >
         Find artist(s) for your sketchable moments
