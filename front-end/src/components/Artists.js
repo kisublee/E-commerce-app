@@ -9,10 +9,9 @@ import { useState, useEffect } from "react";
 // import axios
 import axios from "axios";
 
-export default function Artists() {
+export default function Artists({search}) {
 
   const [artists, setArtists] = useState([]);
-  const [search, setSearch] = useState("");
 
   const API = process.env.REACT_APP_API_URL;
 
@@ -20,7 +19,7 @@ export default function Artists() {
     const fetchData = async () => {
       console.log("Fetching API for artists");
       const res = await axios.get(
-        !search ? `${API}/artists` : `${API}/artists`
+        !search ? `${API}/artists` : `${API}/artists/?type=${search}`
       );
       setArtists(res.data.payload);
     };
