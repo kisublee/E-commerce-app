@@ -28,6 +28,15 @@
 
 - Update notification is implemented. When artists successfully update their postings, the app displays a message saying that it has been successfully updated.
 
+- REST implemented.
+
+- PostgreSQL used for this project to keep data consistent
+
+- MUI library used to make the app more UI friendly
+
+- Type animation implemented for a visual effect
+
+
 ---
 
 ## Features in progress
